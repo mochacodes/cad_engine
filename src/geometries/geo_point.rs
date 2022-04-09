@@ -1,4 +1,5 @@
 use crate::utils::*;
+use crate::geometries::GeometryOps;
 
 pub struct GeoPoint {
     coordinate: Coordinate,
@@ -13,8 +14,29 @@ impl GeoPoint {
             area: Area::new(coord.clone(), coord.clone())
         }
     }
+}
 
-    pub fn area(&self) -> &Area {
+impl GeometryOps for GeoPoint {    
+    fn area(&self) -> &Area {
         &self.area
     }
+    fn translate_by(&self, by: Coordinate) {
+        unimplemented!()
+    }
+    fn scale_by_factor(&self, factor: f64) {
+        unimplemented!()
+    }
+    fn scale_x_y(&self, x: f64, y:f64) {
+        unimplemented!()
+    }
+    fn rotate_by_angle(&self, angle: f64) {
+        unimplemented!()
+    }
+    fn nearest_point_on_entity(&self, pt: Coordinate) -> Coordinate {
+        unimplemented!()
+    }
+    fn nearest_point_on_path(&self, pt: Coordinate) -> Coordinate {
+        unimplemented!()
+    }
+
 }

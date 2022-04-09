@@ -1,5 +1,6 @@
 pub mod utils;
 pub mod geometries;
+pub mod base;
 
 #[cfg(test)]
 mod tests {
