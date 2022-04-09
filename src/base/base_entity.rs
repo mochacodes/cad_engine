@@ -1,16 +1,34 @@
 use crate::utils::*;
 use crate::geometries::EntityGeometry;
-use crate::geometries::GeometryOps;
+use crate::meta::Meta;
 
 pub struct BaseEntity {
-    geometry: EntityGeometry
+    geometry: EntityGeometry,
+    meta: Meta,
+    id: usize,
 }
 
 impl BaseEntity {
-    pub fn id(&self) -> u64 {
-        0
+
+    pub fn with_default_meta(geometry: EntityGeometry) -> BaseEntity {
+        BaseEntity {
+            geometry: geometry,
+            meta: Meta::default(),
+            id: 0
+        }
     }
 
+    pub fn with_meta(geometry: EntityGeometry, meta: Meta) -> BaseEntity {
+        BaseEntity {
+            geometry: geometry,
+            meta: meta,
+            id: 0
+        }
+    }
+
+    pub fn id(&self) -> usize {
+        self.id
+    }
     pub fn translate_by(&self, by: Coordinate) {
         self.geometry.translate_by(by)
     }
@@ -32,4 +50,11 @@ impl BaseEntity {
     pub fn nearest_point_on_path(&self, pt: Coordinate) -> Coordinate {
         self.geometry.nearest_point_on_entity(pt)        
     }
+    pub fn layer(&self) -> &str {
+        self.meta.layer_name()
+    }    
+    pub fn line_width(&self) -> &str {
+        self.meta.line_width()
+    }
+
 }

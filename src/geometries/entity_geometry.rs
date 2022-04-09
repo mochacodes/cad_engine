@@ -8,8 +8,8 @@ pub enum EntityGeometry {
     Arc(GeoArc)
 }
 
-impl GeometryOps for EntityGeometry {
-    fn translate_by(&self, by: Coordinate) {
+impl EntityGeometry {
+    pub fn translate_by(&self, by: Coordinate) {
         match self {
             Self::Line(geometry) => geometry.translate_by(by),
             Self::Arc(geometry) => geometry.translate_by(by),
@@ -17,7 +17,7 @@ impl GeometryOps for EntityGeometry {
             Self::Point(geometry) => geometry.translate_by(by),
         }
     }
-    fn scale_by_factor(&self, factor: f64) {
+    pub fn scale_by_factor(&self, factor: f64) {
         match self {
             Self::Line(geometry) => geometry.scale_by_factor(factor),
             Self::Arc(geometry) => geometry.scale_by_factor(factor),
@@ -25,7 +25,7 @@ impl GeometryOps for EntityGeometry {
             Self::Point(geometry) => geometry.scale_by_factor(factor),
         }
     }
-    fn scale_x_y(&self, x: f64, y:f64) {
+    pub fn scale_x_y(&self, x: f64, y:f64) {
         match self {
             Self::Line(geometry) => geometry.scale_x_y(x, y),
             Self::Arc(geometry) => geometry.scale_x_y(x, y),
@@ -33,10 +33,10 @@ impl GeometryOps for EntityGeometry {
             Self::Point(geometry) => geometry.scale_x_y(x, y),
         }
     }
-    fn rotate_by_angle(&self, angle: f64) {
+    pub fn rotate_by_angle(&self, angle: f64) {
         unimplemented!()
     }
-    fn area(&self) -> &Area {
+    pub fn area(&self) -> &Area {
         match self {
             Self::Line(geometry) => geometry.area(),
             Self::Arc(geometry) => geometry.area(),
@@ -44,7 +44,7 @@ impl GeometryOps for EntityGeometry {
             Self::Point(geometry) => geometry.area(),
         }
     }
-    fn nearest_point_on_entity(&self, pt: Coordinate) -> Coordinate {
+    pub fn nearest_point_on_entity(&self, pt: Coordinate) -> Coordinate {
         match self {
             Self::Line(geometry) => geometry.nearest_point_on_entity(pt),
             Self::Arc(geometry) => geometry.nearest_point_on_entity(pt),
@@ -52,7 +52,7 @@ impl GeometryOps for EntityGeometry {
             Self::Point(geometry) => geometry.nearest_point_on_entity(pt),
         }
     }
-    fn nearest_point_on_path(&self, pt: Coordinate) -> Coordinate {
+    pub fn nearest_point_on_path(&self, pt: Coordinate) -> Coordinate {
         match self {
             Self::Line(geometry) => geometry.nearest_point_on_path(pt),
             Self::Arc(geometry) => geometry.nearest_point_on_path(pt),
